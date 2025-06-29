@@ -14,8 +14,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-    - name: cach dependencies
-      uses: actions/checkout@v4
+    - name: Cache dependencies
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -36,8 +36,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-    - name: cach dependencies
-      uses: actions/checkout@v4
+
+    - name: Cache dependencies
+      uses: actions/cache@v4
       with:
         path: ~/.npm
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
