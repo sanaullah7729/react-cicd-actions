@@ -1,11 +1,8 @@
 name: Greeting
-on:
-  push:
-    branches: [ main ]
+on: push
 jobs:
   greet:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4  # Checks out your repository
     - name: Greet user
       run: echo "Hello world!"
