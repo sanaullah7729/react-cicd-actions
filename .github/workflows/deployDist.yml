@@ -30,8 +30,7 @@ jobs:
       run: npm ci
     - name: Run test
       run: npm run test
-
-  deploy:
+  build:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +40,6 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: 20
-
     - name: Cache dependencies
       uses: actions/cache@v4
       with:
@@ -51,5 +49,20 @@ jobs:
       run: npm ci
     - name: Build project
       run : npm run build
+    - name: upload Dist artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: distfile
+        path: dist
+      
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - name: Deploy
       run: echo "Deploy sucessful"
+    - name: Download Dist artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: distfile
+        path: dist
