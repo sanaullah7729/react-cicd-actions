@@ -1,14 +1,19 @@
 name: diploy Dist
-on: [push,workflow_dispatch]
+on: 
+    push:
+        branches:
+            - main
+            - 'feature/**'
+        paths-ignore:
+            - '.github/workflows/*'
+            - README.md
+    workflow_dispatch:
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - name: Get Code
       uses: actions/checkout@v4
-       # echo "Cloning repo.."
-       # echo "${{toJson(github)}}"
-       # git clone https://github.com/${{github.repository}}.
        
     - name: Install Node 20
       uses: actions/setup-node@v4
